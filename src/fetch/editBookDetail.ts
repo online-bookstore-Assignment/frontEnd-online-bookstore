@@ -10,7 +10,10 @@ const editBookDetail = async (
     return null;
   }
 
-  const bookDetailResponse = await Put<Message>(`${Paths.default}${id}`, data);
+  const bookDetailResponse = await Put<Message, BookInterface>(
+    `${Paths.default}${id}`,
+    data
+  );
 
   return bookDetailResponse.data;
 };

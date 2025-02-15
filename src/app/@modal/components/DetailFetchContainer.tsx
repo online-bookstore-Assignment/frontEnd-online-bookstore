@@ -2,7 +2,7 @@ import getBookDetail from "@/fetch/getBookDetail";
 import EditBookInfo from "./EditBookInfo";
 
 interface DetailFetchContainerProps {
-  modal: any;
+  modal: string | string[] | undefined;
 }
 
 const DetailFetchContainer = async ({ modal }: DetailFetchContainerProps) => {
@@ -10,11 +10,7 @@ const DetailFetchContainer = async ({ modal }: DetailFetchContainerProps) => {
 
   if (bookInfo === null) return;
 
-  return (
-    <>
-      <EditBookInfo bookInfo={bookInfo} />
-    </>
-  );
+  return <EditBookInfo bookInfo={bookInfo} />;
 };
 
 export default DetailFetchContainer;

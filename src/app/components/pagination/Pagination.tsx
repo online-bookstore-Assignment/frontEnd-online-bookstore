@@ -48,6 +48,7 @@ const Pagination = ({
     router.push(`/?${currentParams.toString()}`, {
       scroll: false,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
   useEffect(() => {
@@ -65,6 +66,7 @@ const Pagination = ({
         currentButton: 1,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageQuery]);
 
   // 페이지 파라미터
