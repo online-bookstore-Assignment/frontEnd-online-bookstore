@@ -21,7 +21,11 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="ko">
-      <body className={`${NotoSansKR.className} antialiased`}>{children}</body>
+      <body
+        className={`${NotoSansKR.className} antialiased flex justify-center items-center`}
+      >
+        {children}
+      </body>
     </html>
   );
 };

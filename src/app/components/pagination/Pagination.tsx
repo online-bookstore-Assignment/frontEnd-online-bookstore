@@ -1,9 +1,11 @@
 "use client";
 
 import ArrowLeft from "@/assets/svg/ArrowLeft";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import ArrowRight from "@/assets/svg/ArrowRight";
 import { BookInterface } from "@/type/boos";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PageButton from "./Button";
 import PostItem from "./Item";
 
@@ -18,10 +20,44 @@ const Pagination = ({
   maxPost = 10,
   maxButton = 5,
 }: PostContainerProps) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const pageQuery = searchParams.get("p") || "";
   const [pagination, setPagination] = useState({
     currentPage: 1,
     currentButton: 1,
   });
+
+  useEffect(() => {
+    if (pageQuery) {
+      setPagination({
+        currentPage: Number(pageQuery),
+        currentButton:
+          Math.ceil(Number(pageQuery) / maxButton) * maxButton -
+          (maxButton - 1),
+      });
+    }
+    if (Number(pageQuery) === 0) {
+      setPagination({
+        currentPage: 1,
+        currentButton: 1,
+      });
+    }
+  }, [pageQuery]);
+
+  // 페이지 파라미터
+  const routerHandler = (num: number) => {
+    const currentParams = new URLSearchParams(searchParams);
+    // 페이지 쿼리 파라미터 추가
+    currentParams.set("p", `${num}`);
+
+    if (pathname === "/") {
+      router.push(`/?${currentParams.toString()}`, {
+        scroll: false,
+      });
+    }
+  };
 
   // 최대 버튼 개수 생성
   const tatalPageButton = Math.ceil(dataArray.length / maxPost);
@@ -41,6 +77,7 @@ const Pagination = ({
   // 페이지 핸들러
   const handelPage = (page: number) => {
     setPagination((pre) => ({ ...pre, currentPage: page }));
+    routerHandler(page);
   };
 
   // 버튼 핸들러
@@ -53,6 +90,7 @@ const Pagination = ({
           currentPage: nextButton,
           currentButton: nextButton,
         });
+        routerHandler(nextButton);
       }
     }
 
@@ -64,15 +102,18 @@ const Pagination = ({
           currentPage: prevButton,
           currentButton: prevButton,
         });
+        routerHandler(prevButton);
       }
     }
   };
 
   return (
     <>
-      {currentPosts.map((book) => (
-        <PostItem book={book} key={book.id} />
-      ))}
+      <div className="w-full flex flex-col gap-2 items-center">
+        {currentPosts.map((book) => (
+          <PostItem book={book} key={book.id} />
+        ))}
+      </div>
       <div className="pt-10 flex gap-3 sm:gap-6 items-center justify-center text-base">
         <PageButton
           abled={pagination.currentButton === 1}
