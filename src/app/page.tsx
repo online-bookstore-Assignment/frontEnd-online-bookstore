@@ -1,3 +1,14 @@
-export default function Home() {
-  return <div className="">메인 컨텐츠</div>;
-}
+import { Suspense } from "react";
+import BookListContainer from "./components/BookListContainer";
+
+const Home = () => {
+  return (
+    <div className="">
+      <Suspense fallback={<div>데이터 불러오는 중...</div>}>
+        <BookListContainer />
+      </Suspense>
+    </div>
+  );
+};
+
+export default Home;

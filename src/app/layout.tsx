@@ -14,14 +14,16 @@ export const metadata: Metadata = {
   description: "서점에 가기 힘든 당신을 위한 온라인 서점입니다.",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <html lang="ko">
       <body className={`${NotoSansKR.className} antialiased`}>{children}</body>
     </html>
   );
-}
+};
+
+export default RootLayout;
