@@ -4,6 +4,7 @@ import ArrowLeft from "@/assets/svg/ArrowLeft";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import ArrowRight from "@/assets/svg/ArrowRight";
+import { useBookSearchValueContext } from "@/context/BookSearchValueContext";
 import { BookInterface } from "@/type/boos";
 import { useEffect, useState } from "react";
 import PageButton from "./Button";
@@ -24,10 +25,30 @@ const Pagination = ({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const pageQuery = searchParams.get("p") || "";
+  const { searchValue } = useBookSearchValueContext();
   const [pagination, setPagination] = useState({
     currentPage: 1,
     currentButton: 1,
   });
+
+  const filterArray = dataArray.filter(
+    (book) =>
+      book.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  // 검색시 p 파라미터 1로 초기화
+  useEffect(() => {
+    const currentParams = new URLSearchParams(searchParams);
+    setPagination({
+      currentPage: 1,
+      currentButton: 1,
+    });
+    currentParams.set("p", `1`);
+    router.push(`/?${currentParams.toString()}`, {
+      scroll: false,
+    });
+  }, [searchValue]);
 
   useEffect(() => {
     if (pageQuery) {
@@ -60,11 +81,11 @@ const Pagination = ({
   };
 
   // 최대 버튼 개수 생성
-  const tatalPageButton = Math.ceil(dataArray.length / maxPost);
+  const tatalPageButton = Math.ceil(filterArray.length / maxPost);
   const arr = [...new Array(tatalPageButton)].map((_, i) => i + 1);
 
   // 보여지는 게시글
-  const currentPosts = dataArray.slice(
+  const currentPosts = filterArray.slice(
     (pagination.currentPage - 1) * maxPost,
     maxPost + (pagination.currentPage - 1) * maxPost
   );

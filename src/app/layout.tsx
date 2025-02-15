@@ -1,3 +1,4 @@
+import BookSearchValueProvider from "@/context/BookSearchValueContext";
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
@@ -26,10 +27,12 @@ const RootLayout = ({
       <body
         className={`${NotoSansKR.className} antialiased flex justify-center items-center`}
       >
-        <div id="main-content">
-          {children}
-          {modal}
-        </div>
+        <BookSearchValueProvider>
+          <div id="main-content">
+            {children}
+            {modal}
+          </div>
+        </BookSearchValueProvider>
       </body>
     </html>
   );
