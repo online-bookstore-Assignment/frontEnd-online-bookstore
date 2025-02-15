@@ -22,9 +22,17 @@ const BookDetailModal = ({ children }: BookDetailModalProps) => {
 
   return (
     <div className="modal-overlay" onClick={closeModal}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal-content relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className="absolute bottom-5 right-5 bg-[rgb(53,54,56)] rounded-full text-white mt-2 py-1  w-1/3"
+          onClick={closeModal}
+        >
+          나가기
+        </button>
         {children}
-        <button onClick={closeModal}>닫기</button>
       </div>
     </div>
   );
