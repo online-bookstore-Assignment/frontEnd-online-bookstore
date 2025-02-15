@@ -16,15 +16,20 @@ export const metadata: Metadata = {
 
 const RootLayout = ({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) => {
   return (
     <html lang="ko">
       <body
         className={`${NotoSansKR.className} antialiased flex justify-center items-center`}
       >
-        {children}
+        <div id="main-content">
+          {children}
+          {modal}
+        </div>
       </body>
     </html>
   );

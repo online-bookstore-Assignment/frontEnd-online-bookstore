@@ -5,7 +5,8 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 
-export const getBackEndUrl = () => process.env.BACKEND_URL;
+export const getBackEndUrl = () =>
+  process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const client = axios.create({
   timeout: 5000,
@@ -13,10 +14,6 @@ const client = axios.create({
   headers: {
     "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
-    "X-Content-Type-Options": "nosniff",
-    "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
-    "X-XSS-Protection": "1; mode=block",
-    "Referrer-Policy": "no-referrer",
   },
 });
 

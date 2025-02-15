@@ -3,9 +3,9 @@ import { Get } from ".";
 import Paths from "./path";
 
 const getBookList = async (): Promise<BookInterface[]> => {
-  const characterResponse = await Get<BookInterface[]>(Paths.default);
+  const bookListResponse = await Get<BookInterface[]>(Paths.default);
 
-  return characterResponse.data;
+  return bookListResponse.data;
 };
 
 export default getBookList;
