@@ -1,6 +1,7 @@
 import BookSearchValueProvider from "@/context/BookSearchValueContext";
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 
 const NotoSansKR = Noto_Sans_KR({
@@ -31,7 +32,7 @@ const RootLayout = ({
       >
         <BookSearchValueProvider>
           <div id="main-content">
-            {children}
+            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
             {modal}
             {add}
           </div>

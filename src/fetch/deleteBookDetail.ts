@@ -6,7 +6,9 @@ const deleteBookDetail = async (id: string): Promise<Message | null> => {
   if (!id) {
     return null;
   }
-  const bookDetailResponse = await Delete<Message>(`${Paths.default}${id}`);
+  const bookDetailResponse = await Delete<Message, unknown>(
+    `${Paths.default}${id}`
+  );
 
   return bookDetailResponse.data;
 };

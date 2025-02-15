@@ -3,7 +3,10 @@ import { Post } from ".";
 import Paths from "./path";
 
 const addBook = async (data: BookInfoType): Promise<Message> => {
-  const bookListResponse = await Post<Message>(Paths.default, data);
+  const bookListResponse = await Post<Message, BookInfoType>(
+    Paths.default,
+    data
+  );
 
   return bookListResponse.data;
 };
