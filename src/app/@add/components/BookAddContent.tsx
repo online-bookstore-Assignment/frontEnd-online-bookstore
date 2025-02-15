@@ -1,35 +1,32 @@
 "use client";
 
 import InputFilde from "@/components/InputFilde";
-import editBookDetail from "@/fetch/editBookDetail";
-import { BookInterface } from "@/type/book";
+import addBook from "@/fetch/addBook";
+import { BookInfoType } from "@/type/book";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-interface EditBookInfoProps {
-  bookInfo: BookInterface;
-}
-
-const EditBookInfo = ({ bookInfo }: EditBookInfoProps) => {
+const BookAddContent = () => {
   const router = useRouter();
-  const [bookInfoValue, setBookInfoValue] = useState<BookInterface>(bookInfo);
-
-  useEffect(() => {
-    setBookInfoValue(bookInfo);
-  }, [bookInfo]);
+  const [bookInfo, setBookInfo] = useState<BookInfoType>({
+    title: "",
+    author: "",
+    price: 0,
+    ea: 0,
+  });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     if (name === "price" || name === "ea") {
       console.log(name);
-      setBookInfoValue((prev) => ({
+      setBookInfo((prev) => ({
         ...prev,
         [name]: Number(value.replace(/[^0-9]/g, "")),
       }));
     } else {
       console.log(name);
-      setBookInfoValue((prev) => ({
+      setBookInfo((prev) => ({
         ...prev,
         [name]: value,
       }));
@@ -39,7 +36,7 @@ const EditBookInfo = ({ bookInfo }: EditBookInfoProps) => {
   const editHandler = async (e: React.FormEvent) => {
     e.preventDefault(); // 폼 제출 시 페이지 리로드 방지
     try {
-      const response = await editBookDetail(String(bookInfo.id), bookInfoValue);
+      const response = await addBook(bookInfo);
 
       console.log(response);
       router.refresh();
@@ -48,34 +45,33 @@ const EditBookInfo = ({ bookInfo }: EditBookInfoProps) => {
       console.error(error);
     }
   };
-
   return (
     <form className="flex gap-2 flex-col" onSubmit={editHandler}>
       <InputFilde
         title="제목"
         name="title"
         onChange={onChange}
-        value={bookInfoValue.title}
+        value={bookInfo.title}
       />
       <InputFilde
         title="저자"
         name="author"
         onChange={onChange}
-        value={bookInfoValue.author}
+        value={bookInfo.author}
       />
       <InputFilde
         title="가격"
         name="price"
         pattern="^\d+$"
         onChange={onChange}
-        value={bookInfoValue.price}
+        value={bookInfo.price}
       />
       <InputFilde
         title="수량"
         name="ea"
         pattern="^\d+$"
         onChange={onChange}
-        value={bookInfoValue.ea}
+        value={bookInfo.ea}
       />
       <button
         className="bg-[rgb(53,54,56)] rounded-full text-white mt-2 py-1  w-1/3"
@@ -87,4 +83,4 @@ const EditBookInfo = ({ bookInfo }: EditBookInfoProps) => {
   );
 };
 
-export default EditBookInfo;
+export default BookAddContent;

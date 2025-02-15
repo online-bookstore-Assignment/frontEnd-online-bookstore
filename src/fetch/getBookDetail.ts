@@ -1,4 +1,4 @@
-import { BookInterface } from "@/type/boos";
+import { BookInterface } from "@/type/book";
 import { Get } from ".";
 import Paths from "./path";
 

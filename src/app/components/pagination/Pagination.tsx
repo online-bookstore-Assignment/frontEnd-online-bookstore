@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import ArrowRight from "@/assets/svg/ArrowRight";
 import { useBookSearchValueContext } from "@/context/BookSearchValueContext";
-import { BookInterface } from "@/type/boos";
+import { BookInterface } from "@/type/book";
 import { useEffect, useState } from "react";
 import PageButton from "./Button";
 import PostItem from "./Item";

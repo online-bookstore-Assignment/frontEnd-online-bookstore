@@ -18,9 +18,11 @@ export const metadata: Metadata = {
 const RootLayout = ({
   children,
   modal,
+  add,
 }: Readonly<{
   children: React.ReactNode;
   modal: React.ReactNode;
+  add: React.ReactNode;
 }>) => {
   return (
     <html lang="ko">
@@ -31,6 +33,7 @@ const RootLayout = ({
           <div id="main-content">
             {children}
             {modal}
+            {add}
           </div>
         </BookSearchValueProvider>
       </body>

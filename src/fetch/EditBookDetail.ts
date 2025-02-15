@@ -1,10 +1,6 @@
-import { BookInterface } from "@/type/boos";
+import { BookInterface, Message } from "@/type/book";
 import { Put } from ".";
 import Paths from "./path";
-
-interface Message {
-  message: string;
-}
 
 const editBookDetail = async (
   id: string,

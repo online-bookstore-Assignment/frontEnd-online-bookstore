@@ -2,7 +2,7 @@
 
 import TrashCan from "@/assets/svg/TrashCan";
 import deleteBookDetail from "@/fetch/deleteBookDetail";
-import { BookInterface } from "@/type/boos";
+import { BookInterface } from "@/type/book";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface ItemProps {
