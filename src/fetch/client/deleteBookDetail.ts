@@ -8,7 +8,7 @@ const deleteBookDetail = async (id: string): Promise<Message | null> => {
   }
   try {
     const bookDetailResponse = await Delete<Message, unknown>(
-      `${Paths.default}${id}`
+      `${Paths.default}/${id}`
     );
     return bookDetailResponse.data;
   } catch (error) {

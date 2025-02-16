@@ -8,7 +8,7 @@ import axios, {
 const getBackEndUrl = () => process.env.BACKEND_URL;
 
 const client = axios.create({
-  timeout: 30000,
+  timeout: 3000,
   baseURL: getBackEndUrl(),
   headers: {
     "Content-Type": "application/json",

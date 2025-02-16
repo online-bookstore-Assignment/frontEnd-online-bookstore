@@ -8,7 +8,7 @@ const getBookDetail = async (id: string): Promise<BookInterface | null> => {
   }
   try {
     const bookDetailResponse = await Get<BookInterface>(
-      `${Paths.default}${id}`
+      `${Paths.default}/${id}`
     );
 
     return bookDetailResponse.data;

@@ -11,7 +11,7 @@ const editBookDetail = async (
   }
   try {
     const bookDetailResponse = await Put<Message, BookInterface>(
-      `${Paths.default}${id}`,
+      `${Paths.default}/${id}`,
       data
     );
 
