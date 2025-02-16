@@ -1,4 +1,6 @@
-import BookDetailModal from "./components/BookDetailModal";
+// app/(modal)/detail/page.tsx
+import SkeletonModal from "@/components/skeleton/modal";
+import { Suspense } from "react";
 import DetailFetchContainer from "./components/DetailFetchContainer";
 
 interface DetailModalPageProps {
@@ -8,10 +10,14 @@ interface DetailModalPageProps {
 const DetailModalPage = async ({ searchParams }: DetailModalPageProps) => {
   const { modal } = await searchParams;
 
+  if (!modal || typeof modal !== "string") {
+    return null;
+  }
+
   return (
-    <BookDetailModal>
+    <Suspense fallback={<SkeletonModal />}>
       <DetailFetchContainer modal={modal} />
-    </BookDetailModal>
+    </Suspense>
   );
 };
 

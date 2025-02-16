@@ -1,16 +1,16 @@
 "use client";
 
-import InputFilde from "@/components/InputFilde";
+import Modal from "@/components/Modal";
 import editBookDetail from "@/fetch/editBookDetail";
 import { BookInterface } from "@/type/book";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-interface EditBookInfoProps {
+interface BookDetailContentProps {
   bookInfo: BookInterface;
 }
 
-const EditBookInfo = ({ bookInfo }: EditBookInfoProps) => {
+const BookDetailContent = ({ bookInfo }: BookDetailContentProps) => {
   const router = useRouter();
   const [bookInfoValue, setBookInfoValue] = useState<BookInterface>(bookInfo);
 
@@ -41,7 +41,6 @@ const EditBookInfo = ({ bookInfo }: EditBookInfoProps) => {
     try {
       const response = await editBookDetail(String(bookInfo.id), bookInfoValue);
 
-      console.log(response);
       router.refresh();
       alert(response?.message);
     } catch (error) {
@@ -49,42 +48,12 @@ const EditBookInfo = ({ bookInfo }: EditBookInfoProps) => {
     }
   };
 
-  return (
-    <form className="flex gap-2 flex-col" onSubmit={editHandler}>
-      <InputFilde
-        title="제목"
-        name="title"
-        onChange={onChange}
-        value={bookInfoValue.title}
-      />
-      <InputFilde
-        title="저자"
-        name="author"
-        onChange={onChange}
-        value={bookInfoValue.author}
-      />
-      <InputFilde
-        title="가격"
-        name="price"
-        pattern="^\d+$"
-        onChange={onChange}
-        value={bookInfoValue.price}
-      />
-      <InputFilde
-        title="수량"
-        name="ea"
-        pattern="^\d+$"
-        onChange={onChange}
-        value={bookInfoValue.ea}
-      />
-      <button
-        className="bg-[rgb(53,54,56)] rounded-full text-white mt-2 py-1  w-1/3"
-        type="submit"
-      >
-        제출
-      </button>
-    </form>
-  );
+  const modalHandler = {
+    editHandler,
+    book: bookInfoValue,
+    onChange,
+  };
+  return <Modal modalName="modal" modalHandler={modalHandler} />;
 };
 
-export default EditBookInfo;
+export default BookDetailContent;

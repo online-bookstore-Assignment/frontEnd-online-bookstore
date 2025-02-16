@@ -31,7 +31,6 @@ const onResponse = (res: AxiosResponse): AxiosResponse => {
 const onError = (error: AxiosError | Error): Promise<AxiosError> => {
   if (axios.isAxiosError(error)) {
     if (error?.response) {
-      console.log(error.response);
       const errorCode = error.response?.data?.message || "";
       switch (errorCode) {
         case "책을 찾을 수 없습니다.":
