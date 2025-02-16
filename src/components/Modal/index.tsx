@@ -33,6 +33,7 @@ const Modal = ({
       addToast("책 정보를 불러오는 데 실패했습니다.", "error");
       router.replace(pathname);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFail]);
 
   const closeModal = () => {
