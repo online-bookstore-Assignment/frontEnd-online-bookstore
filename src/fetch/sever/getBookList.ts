@@ -1,10 +1,11 @@
 import { BookInterface } from "@/type/book";
 import { Get } from ".";
-import Paths from "./path";
 
 const getBookList = async (): Promise<BookInterface[] | null> => {
   try {
-    const bookListResponse = await Get<BookInterface[]>(Paths.default);
+    const bookListResponse = await Get<BookInterface[]>(
+      "https://test-support.shop"
+    );
 
     return bookListResponse.data;
   } catch (error) {

@@ -1,5 +1,5 @@
 const Paths = Object.freeze({
-  default: "/",
+  default: "/api/books",
 });
 
 export default Paths;

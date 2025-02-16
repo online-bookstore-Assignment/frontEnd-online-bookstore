@@ -9,10 +9,9 @@ import axios, {
 const getBackEndUrl = () => process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const client = axios.create({
-  timeout: 5000,
+  timeout: 3000,
   baseURL: getBackEndUrl(),
   headers: {
-    "Access-Control-Allow-Origin": "*",
     "Content-Type": "application/json",
   },
 });
@@ -58,7 +57,9 @@ const onError = (error: AxiosError | Error): Promise<AxiosError> => {
 };
 
 // 요청 interceptors
-client.interceptors.request.use(onRequest);
+client.interceptors.request.use(onRequest, (error) => {
+  return Promise.reject(error);
+});
 
 // 응답 interceptors
 client.interceptors.response.use(onResponse, onError);
