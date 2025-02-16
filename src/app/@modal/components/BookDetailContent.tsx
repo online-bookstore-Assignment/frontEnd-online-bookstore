@@ -1,18 +1,27 @@
 "use client";
 
 import Modal from "@/components/Modal";
-import editBookDetail from "@/fetch/editBookDetail";
+import { useToast } from "@/context/ToastContext";
+import editBookDetail from "@/fetch/client/editBookDetail";
 import { BookInterface } from "@/type/book";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface BookDetailContentProps {
   bookInfo: BookInterface;
+  hasError?: boolean;
 }
 
-const BookDetailContent = ({ bookInfo }: BookDetailContentProps) => {
+const BookDetailContent = ({ bookInfo, hasError }: BookDetailContentProps) => {
   const router = useRouter();
+  const { addToast } = useToast();
   const [bookInfoValue, setBookInfoValue] = useState<BookInterface>(bookInfo);
+
+  useEffect(() => {
+    if (hasError) {
+      addToast("책 정보를 불러오는 데 실패했습니다.", "error");
+    }
+  }, [hasError, addToast]);
 
   useEffect(() => {
     setBookInfoValue(bookInfo);
@@ -42,7 +51,7 @@ const BookDetailContent = ({ bookInfo }: BookDetailContentProps) => {
       const response = await editBookDetail(String(bookInfo.id), bookInfoValue);
 
       router.refresh();
-      alert(response?.message);
+      addToast(response?.message, "success");
     } catch (error) {
       console.error(error);
     }

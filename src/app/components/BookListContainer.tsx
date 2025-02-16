@@ -1,4 +1,4 @@
-import getBookList from "@/fetch/getBookList";
+import getBookList from "@/fetch/sever/getBookList";
 import Pagination from "./pagination/Pagination";
 
 const BookListContainer = async () => {

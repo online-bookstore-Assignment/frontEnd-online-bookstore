@@ -1,4 +1,3 @@
-// app/(modal)/detail/page.tsx
 import SkeletonModal from "@/components/skeleton/modal";
 import { Suspense } from "react";
 import DetailFetchContainer from "./components/DetailFetchContainer";

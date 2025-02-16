@@ -8,10 +8,15 @@ const SkeletonModal = () => {
           나가기
         </button>
         <form className="flex gap-2 flex-col animate-pulse ">
-          <InputFilde title="제목" name="title" />
-          <InputFilde title="저자" name="author" />
-          <InputFilde title="가격" name="price" pattern="^\d+$" />
-          <InputFilde title="수량" name="ea" pattern="^\d+$" />
+          <InputFilde title="제목" name="title" isFail={false} />
+          <InputFilde title="저자" name="author" isFail={false} />
+          <InputFilde
+            title="가격"
+            name="price"
+            pattern="^\d+$"
+            isFail={false}
+          />
+          <InputFilde title="수량" name="ea" pattern="^\d+$" isFail={false} />
         </form>
         <button
           className="bg-[rgb(53,54,56)] rounded-full text-white mt-4 py-1 w-1/3"

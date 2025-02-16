@@ -1,6 +1,5 @@
-// components/DetailFetchContainer.tsx
 import Modal from "@/components/Modal";
-import getBookDetail from "@/fetch/getBookDetail";
+import getBookDetail from "@/fetch/sever/getBookDetail";
 import BookDetailContent from "./BookDetailContent";
 
 interface DetailFetchContainerProps {

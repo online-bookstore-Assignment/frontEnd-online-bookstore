@@ -1,5 +1,6 @@
 "use client";
 
+import { useToast } from "@/context/ToastContext";
 import { BookInfoType } from "@/type/book";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
@@ -23,12 +24,13 @@ const Modal = ({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { addToast } = useToast();
 
   const modalType = searchParams.get(modalName);
 
   useEffect(() => {
-    // isFail가 true이고 아직 한 번도 URL 업데이트를 수행하지 않았다면
     if (isFail) {
+      addToast("책 정보를 불러오는 데 실패했습니다.", "error");
       router.replace(pathname);
     }
   }, [isFail]);

@@ -1,3 +1,4 @@
+import ToastHelperInitializer from "@/utils/toastHelper";
 import axios, {
   AxiosError,
   AxiosRequestConfig,
@@ -5,8 +6,7 @@ import axios, {
   InternalAxiosRequestConfig,
 } from "axios";
 
-export const getBackEndUrl = () =>
-  process.env.BACKEND_URL || process.env.NEXT_PUBLIC_BACKEND_URL;
+const getBackEndUrl = () => process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const client = axios.create({
   timeout: 5000,
@@ -34,23 +34,25 @@ const onError = (error: AxiosError | Error): Promise<AxiosError> => {
       const errorCode = error.response?.data?.message || "";
       switch (errorCode) {
         case "책을 찾을 수 없습니다.":
-          alert("일치하는 책이 없습니다.");
+          ToastHelperInitializer().error(errorCode);
           break;
         case "값이 누락되었습니다.":
-          alert("일치하는 책이 없습니다.");
+          ToastHelperInitializer().error(errorCode);
           break;
         case "서버 오류":
-          alert("잠시후에 다시 시도해주세요");
+          ToastHelperInitializer().error(errorCode);
           break;
         default:
-          alert(
+          ToastHelperInitializer().error(
             error.response.data.statusText || "알 수 없는 에러가 발생했습니다."
           );
           break;
       }
     }
   } else {
-    console.log(`fetch-index.ts 🚨 [API] | Error ${error.message}`);
+    ToastHelperInitializer().error(
+      `fetch-index.ts 🚨 [API] | Error ${error.message}`
+    );
   }
   return Promise.reject(error);
 };
