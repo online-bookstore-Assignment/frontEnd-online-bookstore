@@ -1,9 +1,10 @@
 interface InputFildeProps {
   title: string;
   name: string;
-  value: string | number;
+  value?: string | number;
   pattern?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isFail: boolean;
 }
 
 const InputFilde = ({
@@ -12,6 +13,7 @@ const InputFilde = ({
   value,
   onChange,
   pattern,
+  isFail,
 }: InputFildeProps) => {
   return (
     <div className="flex flex-col">
@@ -21,6 +23,7 @@ const InputFilde = ({
         name={name}
         value={value}
         onChange={onChange}
+        readOnly={isFail}
         pattern={pattern}
         required
       />

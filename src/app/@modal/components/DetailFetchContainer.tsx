@@ -1,16 +1,19 @@
-import getBookDetail from "@/fetch/getBookDetail";
-import EditBookInfo from "./EditBookInfo";
+import Modal from "@/components/Modal";
+import getBookDetail from "@/fetch/sever/getBookDetail";
+import BookDetailContent from "./BookDetailContent";
 
 interface DetailFetchContainerProps {
-  modal: string | string[] | undefined;
+  modal: string; // 타입 단언 제거
 }
 
 const DetailFetchContainer = async ({ modal }: DetailFetchContainerProps) => {
-  const bookInfo = await getBookDetail(modal as string);
+  const bookInfo = await getBookDetail(modal);
 
-  if (bookInfo === null) return;
+  if (bookInfo === null) {
+    return <Modal modalName="modal" isFail={true} />;
+  }
 
-  return <EditBookInfo bookInfo={bookInfo} />;
+  return <BookDetailContent bookInfo={bookInfo} />;
 };
 
 export default DetailFetchContainer;

@@ -1,7 +1,8 @@
 "use client";
 
 import TrashCan from "@/assets/svg/TrashCan";
-import deleteBookDetail from "@/fetch/deleteBookDetail";
+import { useToast } from "@/context/ToastContext";
+import deleteBookDetail from "@/fetch/client/deleteBookDetail";
 import { BookInterface } from "@/type/book";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -12,6 +13,7 @@ interface ItemProps {
 const Item = ({ book }: ItemProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { addToast } = useToast();
 
   const openProductModal = () => {
     const currentParams = new URLSearchParams(searchParams);
@@ -26,8 +28,8 @@ const Item = ({ book }: ItemProps) => {
       try {
         const res = await deleteBookDetail(String(book.id));
 
+        addToast(res?.message as string, "success");
         router.refresh();
-        alert(res?.message);
       } catch (error) {
         console.error(error);
       }

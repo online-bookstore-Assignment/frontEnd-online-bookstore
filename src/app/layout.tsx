@@ -1,4 +1,6 @@
+import ToastContainer from "@/components/ToastContainer";
 import BookSearchValueProvider from "@/context/BookSearchValueContext";
+import { ToastProvider } from "@/context/ToastContext";
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import { Suspense } from "react";
@@ -30,13 +32,16 @@ const RootLayout = ({
       <body
         className={`${NotoSansKR.className} antialiased flex justify-center items-center`}
       >
-        <BookSearchValueProvider>
-          <div id="main-content">
-            <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
-            {modal}
-            {add}
-          </div>
-        </BookSearchValueProvider>
+        <ToastProvider>
+          <BookSearchValueProvider>
+            <div id="main-content">
+              <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+              {modal}
+              {add}
+              <ToastContainer />
+            </div>
+          </BookSearchValueProvider>
+        </ToastProvider>
       </body>
     </html>
   );
