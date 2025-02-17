@@ -2,7 +2,7 @@
 [서비스 링크](https://front-end-online-bookstore.vercel.app)
 
 ## 사용 기술
-[![My Skills](https://skillicons.dev/icons?i=vercel,nextjs,tailwind)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=vercel,ts,nextjs,tailwind)](https://skillicons.dev)
 
 ## 구현 기능
 1. 책 목록 페이지네이션 구현
