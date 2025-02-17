@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 온라인 서점 백오피스
+[서비스 링크](https://front-end-online-bookstore.vercel.app)
 
-## Getting Started
+## 사용 기술
+[![My Skills](https://skillicons.dev/icons?i=vercel,nextjs,tailwind)](https://skillicons.dev)
 
-First, run the development server:
+## 구현 기능
+1. 책 목록 페이지네이션 구현
+  - URL 쿼리 스트링을 이용해 페이지네이션 구현
+2. 검색기능 구현
+3. 책 상세정보 모달창 구현
+  - next.js의 병렬 경로를 이용해 모달창 구현
+4. 책 추가 / 삭제 기능 구현
+  - 책 추가 버튼 클릭시 추가할 수 있는 모달창 구현
+5. axios 인터셉터를 활용한 공통 에러 핸들링
+  - 토스트 알람 기능을 구현해 성공 혹은 실패시 알람 기능 구현
+6. react Suspense 을 이용한 사용자 경험 개선
+7. 잘못된 URL에 접근시 404 오류 페이지 표시
+  - 홈 화면으로 이동할 수 있는 버튼 제공
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 페이지 
+### 메인 화면
+![메인 화면](https://github.com/user-attachments/assets/5d9af602-70b3-4c3c-adae-f7460f633b21)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 책 추가
+![책 추가](https://github.com/user-attachments/assets/8aad7d9b-3810-477d-8079-b07558f5f1a3)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 책 상세 정보
+![책 상세 정보](https://github.com/user-attachments/assets/6d6d1e5c-344e-44b2-b6f2-540baaa36758)
