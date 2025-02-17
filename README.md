@@ -1,5 +1,5 @@
 # 온라인 서점 백오피스
-[서비스 링크](https://front-end-online-bookstore.vercel.app)
+[서비스 링크](https://front-end-online-bookstore-git-main-spde3289s-projects.vercel.app)
 
 ## 사용 기술
 [![My Skills](https://skillicons.dev/icons?i=vercel,ts,nextjs,tailwind)](https://skillicons.dev)
